@@ -11,6 +11,7 @@
 #if UNITY_IOS
 namespace Bridge.QQApi
 {
+	using Common;
 	using System.Runtime.InteropServices;
 
 	/// <summary>
