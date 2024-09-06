@@ -1,14 +1,13 @@
 package com.bridge.qqapi;
 
 import android.app.Activity;
-import android.util.Log;
+import android.content.Intent;
+import android.net.Uri;
 
 /**
  * 小红书桥接
  */
 public class QQApiManager {
-    private static final String TAG = QQApiManager.class.getName();
-
     /**
      * 发起添加群流程。
      * @param activity 主Activity
