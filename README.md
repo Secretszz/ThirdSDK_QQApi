@@ -11,3 +11,5 @@
 [Facebook](https://github.com/Secretszz/ThirdSDK_FacebookApi.git)
 
 [Instagram](https://github.com/Secretszz/ThirdSDK_InstagramApi.git)
+
+[支付宝](https://github.com/Secretszz/ThirdSDK_AliApi.git)
