@@ -18,13 +18,13 @@ namespace Bridge.QQApi
 		/// 初始化
 		/// </summary>
 		/// <param name="listener"></param>
-		void InitSDK(ICommonListener listener);
+		void InitSDK(IBridgeListener listener);
 
 		/// <summary>
 		/// 一键拉起加QQ群
 		/// </summary>
 		/// <param name="qqGroupValue">加群参数</param>
 		/// <param name="listener">加群回调</param>
-		void JoinQQGroup(string qqGroupValue, ICommonListener listener);
+		void JoinQQGroup(string qqGroupValue, IBridgeListener listener);
 	}
 }

@@ -22,9 +22,9 @@ namespace Bridge.QQApi
 		/// 初始化
 		/// </summary>
 		/// <param name="listener"></param>
-		void IBridge.InitSDK(ICommonListener listener)
+		void IBridge.InitSDK(IBridgeListener listener)
 		{
-			listener?.OnResult(0, "");
+			listener?.OnSuccess("");
 		}
 
 		/// <summary>
@@ -32,9 +32,9 @@ namespace Bridge.QQApi
 		/// </summary>
 		/// <param name="qqGroupValue">加群参数</param>
 		/// <param name="listener">加群回调</param>
-		void IBridge.JoinQQGroup(string qqGroupValue, ICommonListener listener)
+		void IBridge.JoinQQGroup(string qqGroupValue, IBridgeListener listener)
 		{
-			listener?.OnResult(0, "");
+			listener?.OnSuccess("");
 		}
 	}
 }
