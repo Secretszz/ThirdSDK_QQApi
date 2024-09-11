@@ -45,7 +45,7 @@ namespace Bridge.QQApi
 		/// 初始化
 		/// </summary>
 		/// <param name="listener"></param>
-		public static void InitSDK(ICommonListener listener)
+		public static void InitSDK(IBridgeListener listener)
 		{
 			bridgeImpl.InitSDK(listener);
 		}
@@ -56,7 +56,7 @@ namespace Bridge.QQApi
 		/// </summary>
 		/// <param name="qqGroupValue">加群参数</param>
 		/// <param name="listener">加群回调</param>
-		public static void JoinQQGroup(string qqGroupValue, ICommonListener listener)
+		public static void JoinQQGroup(string qqGroupValue, IBridgeListener listener)
 		{
 			bridgeImpl.JoinQQGroup(qqGroupValue, listener);
 		}

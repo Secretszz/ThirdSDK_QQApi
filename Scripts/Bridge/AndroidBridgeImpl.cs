@@ -8,11 +8,10 @@
 // Create Time:		2024/02/03 16:16:05
 // *******************************************
 
-using Bridge.Common;
-
 #if UNITY_ANDROID
 namespace Bridge.QQApi
 {
+	using Common;
 	using UnityEngine;
 
 	/// <summary>
@@ -30,12 +29,12 @@ namespace Bridge.QQApi
 		/// 初始化
 		/// </summary>
 		/// <param name="listener"></param>
-		void IBridge.InitSDK(ICommonListener listener)
+		void IBridge.InitSDK(IBridgeListener listener)
 		{
 			AndroidJavaClass unityPlayer = new AndroidJavaClass(UnityPlayerClassName);
 			currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
 			bridge = new AndroidJavaClass(ManagerClassName);
-			listener?.OnResult(0, "");
+			listener?.OnSuccess("");
 		}
 
 		/// <summary>
@@ -43,15 +42,15 @@ namespace Bridge.QQApi
 		/// </summary>
 		/// <param name="qqGroupValue">加群参数</param>
 		/// <param name="listener">加群回调</param>
-		void IBridge.JoinQQGroup(string qqGroupValue, ICommonListener listener)
+		void IBridge.JoinQQGroup(string qqGroupValue, IBridgeListener listener)
 		{
 			if (bridge.CallStatic<bool>("joinQQGroup", currentActivity, qqGroupValue))
 			{
-				listener?.OnResult(0, "");
+				listener?.OnSuccess("");
 			}
 			else
 			{
-				listener?.OnResult(-1, "打开QQ失败，请检查设备内是否安装了QQ");
+				listener?.OnError(-1, "打开QQ失败，请检查设备内是否安装了QQ");
 			}
 		}
 	}
