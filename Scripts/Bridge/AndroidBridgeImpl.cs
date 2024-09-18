@@ -22,7 +22,7 @@ namespace Bridge.QQApi
 		private const string UnityPlayerClassName = "com.unity3d.player.UnityPlayer";
 		private const string ManagerClassName = "com.bridge.qqapi.QQApiManager";
 
-		private static AndroidJavaClass bridge;
+		private static AndroidJavaObject sdk;
 		private static AndroidJavaObject currentActivity;
 		
 		/// <summary>
@@ -33,7 +33,8 @@ namespace Bridge.QQApi
 		{
 			AndroidJavaClass unityPlayer = new AndroidJavaClass(UnityPlayerClassName);
 			currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-			bridge = new AndroidJavaClass(ManagerClassName);
+			AndroidJavaClass bridge = new AndroidJavaClass(ManagerClassName);
+			sdk = bridge.GetStatic<AndroidJavaObject>("getInstance");
 			listener?.OnSuccess("");
 		}
 
@@ -44,7 +45,7 @@ namespace Bridge.QQApi
 		/// <param name="listener">加群回调</param>
 		void IBridge.JoinQQGroup(string qqGroupValue, IBridgeListener listener)
 		{
-			if (bridge.CallStatic<bool>("joinQQGroup", currentActivity, qqGroupValue))
+			if (sdk.Call<bool>("joinQQGroup", currentActivity, qqGroupValue))
 			{
 				listener?.OnSuccess("");
 			}
