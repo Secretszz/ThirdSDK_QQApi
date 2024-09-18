@@ -34,7 +34,7 @@ namespace Bridge.QQApi
 			AndroidJavaClass unityPlayer = new AndroidJavaClass(UnityPlayerClassName);
 			currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
 			AndroidJavaClass bridge = new AndroidJavaClass(ManagerClassName);
-			sdk = bridge.GetStatic<AndroidJavaObject>("getInstance");
+			sdk = bridge.CallStatic<AndroidJavaObject>("getInstance");
 			listener?.OnSuccess("");
 		}
 
