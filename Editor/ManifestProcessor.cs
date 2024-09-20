@@ -9,13 +9,13 @@
 // *******************************************
 
 #if UNITY_ANDROID
-namespace Bridge.FacebookApi
+namespace Bridge.QQApi
 {
     using System.IO;
     using UnityEngine;
     using UnityEditor;
     using UnityEditor.Callbacks;
-    using Editor;
+    using Common;
 
     internal static class ManifestProcessor
     {
