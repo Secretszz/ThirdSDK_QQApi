@@ -15,7 +15,7 @@ namespace Bridge.QQApi
 	using UnityEditor;
 	using UnityEditor.Callbacks;
 	using UnityEditor.iOS.Xcode;
-	using Editor;
+	using Common;
 
 	/// <summary>
 	/// 
