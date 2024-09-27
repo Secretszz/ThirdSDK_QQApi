@@ -27,7 +27,7 @@ namespace Bridge.QQApi
 
         private static void CopyNativeCode(string projectPath)
         {
-            var sourcePath = ThirdSDKPackageManager.GetUnityPackagePath(ThirdSDKPackageManager.QQApiPackageName);
+            var sourcePath = ThirdSDKPackageManager.GetUnityPackagePath(PackageType.QQ);
             if (string.IsNullOrEmpty(sourcePath))
             {
                 // 这个不是通过ump下载的包，查找工程内部文件夹
