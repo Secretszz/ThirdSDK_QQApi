@@ -37,23 +37,6 @@ namespace Bridge.QQApi
 			sdk = bridge.CallStatic<AndroidJavaObject>("getInstance");
 			listener?.OnSuccess("");
 		}
-
-		/// <summary>
-		/// 一键拉起加QQ群
-		/// </summary>
-		/// <param name="qqGroupValue">加群参数</param>
-		/// <param name="listener">加群回调</param>
-		void IBridge.JoinQQGroup(string qqGroupValue, IBridgeListener listener)
-		{
-			if (sdk.Call<bool>("joinQQGroup", currentActivity, qqGroupValue))
-			{
-				listener?.OnSuccess("");
-			}
-			else
-			{
-				listener?.OnError(-1, "打开QQ失败，请检查设备内是否安装了QQ");
-			}
-		}
 	}
 }
 #endif

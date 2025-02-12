@@ -27,27 +27,6 @@ namespace Bridge.QQApi
 		{
 			listener?.OnSuccess("");
 		}
-
-		/// <summary>
-		/// 一键拉起加QQ群
-		/// </summary>
-		/// <param name="qqGroupValue">加群参数</param>
-		/// <param name="listener">加群回调</param>
-		void IBridge.JoinQQGroup(string qqGroupValue, IBridgeListener listener)
-		{
-			string[] keys = qqGroupValue.Split(',');
-			if (c_join_qq_group(keys[0], keys[1]))
-			{
-				listener?.OnSuccess("");
-			}
-			else
-			{
-				listener?.OnError(-1, "打开QQ失败，请检查设备内是否安装了QQ");
-			}
-		}
-
-		[DllImport("__Internal")]
-		private static extern bool c_join_qq_group(string groupUin, string key);
 	}
 }
 #endif

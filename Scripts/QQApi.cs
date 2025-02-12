@@ -49,16 +49,5 @@ namespace Bridge.QQApi
 		{
 			bridgeImpl.InitSDK(listener);
 		}
-
-		/// <summary>
-		/// 一键拉起加QQ群
-		/// QQ群Key生成网页：https://qun.qq.com/join.html
-		/// </summary>
-		/// <param name="qqGroupValue">加群参数</param>
-		/// <param name="listener">加群回调</param>
-		public static void JoinQQGroup(string qqGroupValue, IBridgeListener listener)
-		{
-			bridgeImpl.JoinQQGroup(qqGroupValue, listener);
-		}
 	}
 }
