@@ -11,6 +11,7 @@
 #if UNITY_ANDROID
 namespace Bridge.QQApi
 {
+    using System.Xml.Linq;
     using System.IO;
     using UnityEngine;
     using UnityEditor;
@@ -39,6 +40,34 @@ namespace Bridge.QQApi
             string targetPath = Path.Combine(projectPath, Common.ManifestProcessor.NATIVE_CODE_DIR, "qqapi");
             Debug.Log("targetPath===" + targetPath);
             FileTool.DirectoryCopy(sourcePath, targetPath);
+            RefreshManifest();
+            ThirdSDKSettings settings = ThirdSDKSettings.Instance;
+            SetStringsConfig(settings.QQAppId);
+        }
+        
+        private static void SetStringsConfig(string app_id)
+        {
+            Common.ManifestProcessor.StringsElements.Add(new XElement("string", new XAttribute("name", "qq_app_id"), app_id));
+            Common.ManifestProcessor.StringsElements.Add(new XElement("string", new XAttribute("name", "qq_login_protocol_scheme"), $"tencent{app_id}"));
+        }
+
+        private static void RefreshManifest()
+        {
+            Common.ManifestProcessor.ApplicationElements.Add(new XElement("activity",
+                new XAttribute(Common.ManifestProcessor.ns + "name", "com.tencent.tauth.AuthActivity"),
+                new XAttribute(Common.ManifestProcessor.ns + "noHistory", "true"),
+                new XAttribute(Common.ManifestProcessor.ns + "launchMode", "singleTask"),
+                new XElement("intent-filter",
+                    new XElement("action", new XAttribute(Common.ManifestProcessor.ns + "name", Common.ManifestProcessor.ACTION_VIEW)),
+                    new XElement("category", new XAttribute(Common.ManifestProcessor.ns + "name", Common.ManifestProcessor.DEFAULT_CATEGORY)),
+                    new XElement("category", new XAttribute(Common.ManifestProcessor.ns + "name", Common.ManifestProcessor.BROWSABLE_CATEGORY)),
+                    new XElement("data", new XAttribute(Common.ManifestProcessor.ns + "scheme", "@string/qq_login_protocol_scheme")))));
+
+            Common.ManifestProcessor.ApplicationElements.Add(new XElement("activity",
+                new XAttribute(Common.ManifestProcessor.ns + "name", "com.tencent.connect.common.AssistActivity"),
+                new XAttribute(Common.ManifestProcessor.ns + "configChanges", "orientation|keyboardHidden|screenSize"),
+                new XAttribute(Common.ManifestProcessor.ns + "screenOrientation", "behind"),
+                new XAttribute(Common.ManifestProcessor.ns + "theme", "@android:style/Theme.Translucent.NoTitleBar")));
         }
     }
 }
