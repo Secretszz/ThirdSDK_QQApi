@@ -42,13 +42,15 @@ namespace Bridge.QQApi
             FileTool.DirectoryCopy(sourcePath, targetPath);
             RefreshManifest();
             ThirdSDKSettings settings = ThirdSDKSettings.Instance;
-            SetStringsConfig(settings.QQAppId);
+            string packageName = PlayerSettings.applicationIdentifier;
+            SetStringsConfig(settings.QQAppId, packageName);
         }
         
-        private static void SetStringsConfig(string app_id)
+        private static void SetStringsConfig(string app_id, string packageName)
         {
             Common.ManifestProcessor.StringsElements.Add(new XElement("string", new XAttribute("name", "qq_app_id"), app_id));
             Common.ManifestProcessor.StringsElements.Add(new XElement("string", new XAttribute("name", "qq_login_protocol_scheme"), $"tencent{app_id}"));
+            Common.ManifestProcessor.StringsElements.Add(new XElement("string", new XAttribute("name", "qq_authorities"), $"{packageName}.fileprovider"));
         }
 
         private static void RefreshManifest()
